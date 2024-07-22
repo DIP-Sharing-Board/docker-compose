@@ -1,0 +1,2 @@
+put your channels id here example:
+12321,31231,123123
