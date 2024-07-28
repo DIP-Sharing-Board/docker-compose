@@ -3,32 +3,44 @@ USE activities;
 
 CREATE TABLE Competitions (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    link VARCHAR(255) NOT NULL UNIQUE,
+    hashLink VARCHAR(255) NOT NULL UNIQUE,
+    link VARCHAR(255) NOT NULL,
     topic TEXT,
     imageUrl TEXT NOT NULL,
     deadline DATETIME,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    isActive BOOLEAN NOT NULL DEFAULT TRUE
+    updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    isActive BOOLEAN NOT NULL DEFAULT TRUE,
+    INDEX competitions_hash_link (hashLink),
+    INDEX competitions_updated_at (updatedAt)
 );
 
 CREATE TABLE Camps (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    link VARCHAR(255) NOT NULL UNIQUE,
+    hashLink VARCHAR(255) NOT NULL UNIQUE,
+    link VARCHAR(255) NOT NULL,
     topic TEXT,
     imageUrl TEXT NOT NULL,
     deadline DATETIME,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    isActive BOOLEAN NOT NULL DEFAULT TRUE
+    updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    isActive BOOLEAN NOT NULL DEFAULT TRUE,
+    INDEX camps_hash_link (hashLink),
+    INDEX camps_updated_at (updatedAt)
 );
 
 CREATE TABLE Others (
     id INTEGER PRIMARY KEY AUTO_INCREMENT,
-    link VARCHAR(255) NOT NULL UNIQUE,
+    hashLink VARCHAR(255) NOT NULL UNIQUE,
+    link VARCHAR(255) NOT NULL,
     topic TEXT,
     imageUrl TEXT NOT NULL,
     deadline DATETIME,
     createdAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    isActive BOOLEAN NOT NULL DEFAULT TRUE
+    updatedAt DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    isActive BOOLEAN NOT NULL DEFAULT TRUE,
+    INDEX others_hash_link (hashLink),
+    INDEX others_updated_at (updatedAt)
 );
 
 -- Ensure the event scheduler is enabled
