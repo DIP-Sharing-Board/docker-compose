@@ -18,7 +18,14 @@ services:
     environment:
       BOT_TOKEN: /run/secrets/bot-token
       CHANNELS_ID: /run/secrets/channels-id
-      MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db-password
+      DATABASE_USERNAME: root
+      DATABASE_HOST: db
+      DATABASE_PORT: 3306
+      DATABASE_NAME: activities
+      DATABASE_PASSWORD: /run/secrets/db-password
+      CAMP_CHANNEL_NAME: "camp"
+      COMP_CHANNEL_NAME: "comp"
+      OTHER_CHANNEL_NAME: "other"
     networks:
       - private
       - public
