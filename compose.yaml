@@ -9,8 +9,7 @@
 # https://github.com/docker/awesome-compose
 services:
   discord-bot:
-    build:
-      context: ../discord-bot/
+    image: kittipongthongnate/discord-bot:latest
     secrets:
       - db-password
       - bot-token
@@ -36,8 +35,7 @@ services:
         condition: service_healthy
 
   activities-data:
-    build:
-      context: ../activities-data/
+    image: kittipongthongnate/activities-data:latest
     secrets:
       - db-password
     environment:
