@@ -9,7 +9,7 @@
 # https://github.com/docker/awesome-compose
 services:
   discord-bot:
-    image: kittipongthongnate/discord-bot:latest
+    image: kittipongthongnate/dip-sharing-board-discord-bot:latest
     secrets:
       - db-password
       - bot-token
@@ -35,7 +35,7 @@ services:
         condition: service_healthy
 
   activities-data:
-    image: kittipongthongnate/activities-data:latest
+    image: kittipongthongnate/dip-sharing-board-activities-data:latest
     secrets:
       - db-password
     environment:
@@ -113,6 +113,25 @@ services:
       timeout: 5s
       retries: 40
 
+  web-app:
+    image: kittipongthongnate/dip-sharing-board-web-app:latest
+    environment:
+      NODE_ENV: production
+    networks:
+      - public
+    ports:
+      - 8080:8080
+
+  image-streamer:
+    image: kittipongthongnate/dip-sharing-board-image-streamer:latest
+    environment:
+      SERVER_HOST: image-streamer
+      SERVER_PORT: 7000
+    networks:
+      - public
+    ports:
+      - 7000:7000
+      
 volumes:
   db-data:
 networks:
